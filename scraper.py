@@ -51,7 +51,7 @@ class Extracter:
         from there. if want to restart from start run, object.index1 = 0.
         use test = True to check if code is working correctly
         """
-        service = Service('C:/Users/shiva/Downloads/FILES/webdriver/chromedriver-win64/chromedriver.exe')
+        # service = Service('C:/Users/shiva/Downloads/FILES/webdriver/chromedriver-win64/chromedriver.exe')
         service = Service()
         chrome_options = Options()
         chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36")
