@@ -43,16 +43,16 @@ pip install -r requirements.txt
 Scrapes the ipl 2026 cricket matches from [ESPNCricinfo].
 
 For each match, it collects:
-| `Match_no` | Match identifier (e.g., "1st Match", "Final") |
-| `Date` | Date of the match (YYYY-MM-DD) |
-| `Team1` | Home / first team |
-| `Team2` | Away / second team |
-| `Venue` | Stadium and city |
-| `Winning_team` | Winner of the match (includes Super Over results) |
-| `Player_of_match` | Player awarded Man of the Match |
-| `Player_of_match_total_impact` | Impact score of the Player of the Match |
-| `Top_scorer` | Highest run-scorer in the match |
-| `Top_scorer_runs` | Runs scored by the top scorer |
+- `Match_no` | Match identifier (e.g., "1st Match", "Final") |
+- `Date` | Date of the match (YYYY-MM-DD) |
+- `Team1` | Home / first team |
+- `Team2` | Away / second team |
+- `Venue` | Stadium and city |
+- `Winning_team` | Winner of the match (includes Super Over results) |
+- `Player_of_match` | Player awarded Man of the Match |
+- `Player_of_match_total_impact` | Impact score of the Player of the Match |
+- `Top_scorer` | Highest run-scorer in the match |
+- `Top_scorer_runs` | Runs scored by the top scorer |
 
 Results are saved to `match_data.csv`.
 
