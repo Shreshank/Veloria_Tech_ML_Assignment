@@ -42,13 +42,14 @@ class Extracter:
         d['link'] = soup.find('div', class_="ds-p-0").find_all('a', class_='ds-no-tap-higlight')
         self.links = d['link']
 
-        with open("data/main.html", "w", encoding="utf-8") as f:
+        with open("datas/main.html", "w", encoding="utf-8") as f:
             f.write(soup.prettify())
 
-    def extract_match_data(self, index=0):
+    def extract_match_data(self, index=0, test=False):
         """
         Extract Match Data html file of all matches in case of error saves final index in index1 attribute(for notebook execution) you can restarts
-        from there. if want to restart from start run, object.index1 = 0
+        from there. if want to restart from start run, object.index1 = 0.
+        use test = True to check if code is working correctly
         """
         service = Service('C:/Users/shiva/Downloads/FILES/webdriver/chromedriver-win64/chromedriver.exe')
         service = Service()
@@ -76,7 +77,7 @@ class Extracter:
                 htmlPage = driver.page_source
                 print(self.index1, '<-s, Done')
                 soup = BeautifulSoup(htmlPage, "html.parser")
-                with open(f"data/{self.index1}_s.html", "w", encoding="utf-8") as f:
+                with open(f"datas/{self.index1}_s.html", "w", encoding="utf-8") as f:
                     f.write(soup.prettify())
 
                 self.index1+= 1
@@ -88,16 +89,18 @@ class Extracter:
             except Exception as e:
                 print(f"Error on page {self.index1} and {self.links[id]}: {e}")
                 time.sleep(30)
-            break
+            if test:
+                break
         driver.quit()
 
         if self.index1 >= 74:
             self.index1 = 0
         
-    def extract_player_data(self, index=0):
+    def extract_player_data(self, index=0, test=False):
         """
         Extract Player Data html file of all matches in case of error saves final index in index2 attribute(for notebook execution) you can restarts
         from there. if want to restart from start run, object.index2 = 0
+        use test = True to check if code is working correctly
         """
         # service = Service('C:/Users/shiva/Downloads/FILES/webdriver/chromedriver-win64/chromedriver.exe')
         service = Service()
@@ -126,7 +129,7 @@ class Extracter:
                 htmlPage = driver.page_source
                 print(self.index2, '<-m, Done')
                 soup = BeautifulSoup(htmlPage, "html.parser")
-                with open(f"data/{self.index2}_m.html", "w", encoding="utf-8") as f:
+                with open(f"datas/{self.index2}_m.html", "w", encoding="utf-8") as f:
                     f.write(soup.prettify())
 
                 self.index2+= 1
@@ -138,7 +141,8 @@ class Extracter:
             except Exception as e:
                 print(f"Error on page {self.index2} and {self.links[id]}: {e}")
                 time.sleep(30)
-            break
+            if test:
+                break
         driver.quit()
         if self.index2 >= 74:
             self.index2 = 0
@@ -177,9 +181,9 @@ def table_to_df(table):
 
     return pd.DataFrame(rows, columns=columns)
 for i in range(74):
-    with open(f'data/{i}_s.html', 'r', encoding="utf-8") as f:
+    with open(f'datas/{i}_s.html', 'r', encoding="utf-8") as f:
         score = BeautifulSoup(f, "html.parser")
-    with open(f'data/{i}_m.html', 'r', encoding="utf-8") as g:
+    with open(f'datas/{i}_m.html', 'r', encoding="utf-8") as g:
         most = BeautifulSoup(g, "html.parser")
     
     d['Match_no'].append(' '.join(score.find('div', class_='ds-text-body-3 ds-font-medium ds-text-color-text-secondary ds-mt-1').text.strip().split()))
@@ -221,6 +225,7 @@ df['Winning_team'] = df['Winning_team'].str.split('won').map(lambda x: x[0])
 df.loc[37, 'Winning_team'] = 'KKR(Won On Super Over)'
 df['Date'] = pd.to_datetime(df['Date'].str.split('-').map(lambda x: x[0]).str.strip())
 
+print()
 print(df.info())
 
 # Saving Final DataFrame
