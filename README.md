@@ -18,6 +18,8 @@ This repository contains my submission for the Veloria Tech AI/ML Engineering In
 ```
 veloria-tech-ml-intern-assignment/
 │
+├── trails              # Experiments done before writing final code
+├── requirements.txt    # To Downnload all necessary libraries
 ├── scraper.py          # Task 1 — Web scraping script
 ├── match_data.csv      # Task 1 — Scraped match data output
 ├── model.py            # Task 2 — ML prediction model
@@ -58,7 +60,7 @@ Results are saved to `match_data.csv`.
 
 ### How to run
 
-- Create a datas and data(for Experiments.ipynb) folder
+- Create a datas and trials/data(for Experiments.ipynb) folder
 
 ```bash
 python scraper.py

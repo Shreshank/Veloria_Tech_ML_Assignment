@@ -169,6 +169,7 @@ d = {
     'Top_scorer':[],
     'Top_scorer_runs':[],
 }
+
 def table_to_df(table):
     columns = table.find('thead').find('tr').find_all('th')
     columns = list(map(lambda x:x.text.strip(), columns))
@@ -180,6 +181,7 @@ def table_to_df(table):
         rows.append(r)
 
     return pd.DataFrame(rows, columns=columns)
+
 for i in range(74):
     with open(f'datas/{i}_s.html', 'r', encoding="utf-8") as f:
         score = BeautifulSoup(f, "html.parser")
@@ -217,7 +219,9 @@ for i in range(74):
 
     print(i,'<-converted, Done')
 
+
 df = pd.DataFrame(d)
+
 
 # Initial Cleaning of df
 df['Match_no'] = df['Match_no'].str.split('(').map(lambda x: x[0])
