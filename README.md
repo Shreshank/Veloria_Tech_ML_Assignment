@@ -58,6 +58,8 @@ Results are saved to `match_data.csv`.
 
 ### How to run
 
+- Create a datas and data(for Experiments.ipynb) folder
+
 ```bash
 python scraper.py
 ```
