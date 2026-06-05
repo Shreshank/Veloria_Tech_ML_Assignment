@@ -77,17 +77,16 @@ class RagSearch:
 
     def query(self):
         while True:
-            query = input('(type e to end)Enter Query: ')
+            query = input('(type e to end)Enter Query for sementic search: ')
             if query == 'e':
                 break
             res = self.collection.query(query_texts=[query])['documents']
 
             print(res)
-
-            
+         
     def run(self):
         while True:
-            query = input('(type e to end)Enter Query: ')
+            query = input('(type e to end)Enter Query for llm search: ')
             if query == 'e':
                 break
 
@@ -105,7 +104,9 @@ class RagSearch:
 
 rag = RagSearch()
 rag.set_records()
-rag.load_vector_emd()
-rag.query()
+
 # rag.generate_vector_emd()
-# rag.run()
+rag.load_vector_emd()
+
+rag.query()
+rag.run()

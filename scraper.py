@@ -182,7 +182,7 @@ def table_to_df(table):
 
     return pd.DataFrame(rows, columns=columns)
 
-for i in range(74):
+for i in range(74): # set loop to 1 on test
     with open(f'datas/{i}_s.html', 'r', encoding="utf-8") as f:
         score = BeautifulSoup(f, "html.parser")
     with open(f'datas/{i}_m.html', 'r', encoding="utf-8") as g:
@@ -226,7 +226,7 @@ df = pd.DataFrame(d)
 # Initial Cleaning of df
 df['Match_no'] = df['Match_no'].str.split('(').map(lambda x: x[0])
 df['Winning_team'] = df['Winning_team'].str.split('won').map(lambda x: x[0])
-df.loc[37, 'Winning_team'] = 'KKR(Won On Super Over)'
+df.loc[37, 'Winning_team'] = 'KKR(Won On Super Over)' # comment this on test
 df['Date'] = pd.to_datetime(df['Date'].str.split('-').map(lambda x: x[0]).str.strip())
 
 print()

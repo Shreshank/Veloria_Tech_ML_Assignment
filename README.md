@@ -152,7 +152,8 @@ Enter your search query: Show me winner of 2023 ipl
 
 ## Demo Video
 
-🎥 **Loom walkthrough:** [Loom link]
+- watch it on 2.5x for best experience
+🎥 **Loom walkthrough:** [https://www.loom.com/share/ea2f5db328734ef88b6636fc9853ce11]
 
 ---
 
