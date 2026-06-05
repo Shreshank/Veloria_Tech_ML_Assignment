@@ -73,18 +73,19 @@ python scraper.py
 ## Task 2 — ML Prediction Model (`model.py`)
 
 ### What it does
-Loads `match_data.csv`, engineers features, trains a classification model to predict match outcomes, and evaluates performance.
+Loads `trials/matches.csv`, engineers features, trains a classification model to predict match outcomes, and evaluates performance.
 
 ### Algorithm used
-**[Algorithm name — e.g. Logistic Regression / Random Forest / XGBoost]**
+**[Logistic Regression]**
 
-*Reason:* [One or two sentences explaining your choice — e.g. "Logistic Regression was chosen as a clean baseline given the small dataset size. It is interpretable and performs well on binary classification tasks."]
+*Reason:* Logistic Regression was chosen as a clean baseline given the small dataset size. It is interpretable and performs well on binary classification tasks.
 
 ### Features used
-- [Feature 1 — e.g. Home team indicator]
-- [Feature 2 — e.g. Recent win rate (last 5 matches)]
-- [Feature 3 — e.g. Venue encoded]
-- [Add more as applicable]
+- venue
+- main_team
+- opposing_team
+- toss_decision
+- main_team_won_toss
 
 ### How to run
 
@@ -96,20 +97,20 @@ python model.py
 
 | Metric | Score |
 |--------|-------|
-| Accuracy | [e.g. 0.74] |
-| F1 Score | [e.g. 0.71] |
+| Accuracy | 57(training) | 52(test)
+| F1 Score | 57(training) | 52(test)
 
 **Confusion Matrix:**
 
 ```
-[[TP  FP]
- [FN  TN]]
+[[274 261]
+ [202 353]]
+
+[[55 55]
+ [44 64]]
 ```
 
-*(Replace with your actual values)*
-
-> **Screenshot of terminal output:**  
-> *(Paste a screenshot or copy-paste the printed output here)*
+> ![Output](image.png)
 
 ---
 
@@ -133,8 +134,8 @@ Enter your search query: Show me matches where the away team won
 **Output:** Top 3 most semantically similar match records.
 
 ### How it works
-1. Each row in `match_data.csv` is converted into a natural language sentence — e.g. *"India vs Australia at MCG on 15 Jan 2024. Australia won. Top scorer: David Warner with 87 runs."*
-2. `sentence-transformers` (model: `all-MiniLM-L6-v2`) encodes each sentence into a dense vector.
+1. Each row in `trials/matches.csv` is converted into a natural language sentence — e.g. *"India vs Australia at MCG on 15 Jan 2024. Australia won. Top scorer: David Warner with 87 runs."*
+2. `sentence-transformers` (model: `model_name`) encodes each sentence into a dense vector.
 3. Vectors are stored in a ChromaDB in-memory collection.
 4. On query, the query string is also embedded and cosine similarity is used to retrieve the top 3 matches.
 
@@ -142,9 +143,8 @@ Enter your search query: Show me matches where the away team won
 
 ## Challenges Faced
 
-- [e.g. Website structure changed — had to adjust CSS selectors]
-- [e.g. Small dataset size limited model accuracy]
-- [e.g. Any library installation issue and how you resolved it]
+- [Website structure changed — had to adjust CSS selectors]
+- [Small dataset and features size limited model accuracy]
 
 ---
 

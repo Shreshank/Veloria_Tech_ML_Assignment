@@ -10,7 +10,7 @@ class Model:
 
     def __init__(self, df):
         """ This Class is a warpper around LogisticRegression model fitted on matches data of ipl
-            (2008-2024), the features used in datasets are, venue,main_team,opposing_team,toss_decision,main_team_won_toss.
+            (2008-2024), the features used in datasets are, venue, main_team, opposing_team, toss_decision, main_team_won_toss.
             with main_team_won as a target column. you can accesss dataset using self.df and model using self.model, and also
             save or load the already built model. make sure to call clean dataset when using pre-built model.
         """
@@ -106,8 +106,8 @@ m = Model(df)
 
 m.load_model()
 m.clean_data()
-# m.display_metrics()
+m.display_metrics()
 
-X = m.df.iloc[:,:-1]
-y = m.df.iloc[:,-1].values
-print(accuracy_score(y, m.model.predict(X)))
+# X = m.df.iloc[:,:-1]
+# y = m.df.iloc[:,-1].values
+# print(accuracy_score(y, m.model.predict(X)))
