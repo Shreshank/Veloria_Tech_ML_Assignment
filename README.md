@@ -1,8 +1,6 @@
-# Incomplete Test Readme, Will further improve as completing assignment
-
 # Veloria Tech — ML Intern Assignment
 **Submitted by:** Shreshank Kesharwani
-**Date:** 05 June 2026
+**Date:** 06 June 2026
 **Email:** shivankkesharwani4@gmail.com
 
 ---
@@ -19,11 +17,13 @@ This repository contains my submission for the Veloria Tech AI/ML Engineering In
 veloria-tech-ml-intern-assignment/
 │
 ├── trails              # Experiments done before writing final code
+├── trials/matches.csv  # Used in models and rag implementation
 ├── requirements.txt    # To Downnload all necessary libraries
 ├── scraper.py          # Task 1 — Web scraping script
 ├── match_data.csv      # Task 1 — Scraped match data output
-├── model.py            # Task 2 — ML prediction model
-├── rag_search.py       # Task 3 (Bonus) — Semantic search with vector embeddings
+├── model.py            # Task 2 — ML prediction model code
+├── model.pkl           # Task 2 — ML prediction model
+├── rag_search.py       # Task 3 — Semantic search with vector embeddings
 └── README.md           # This file
 ```
 
@@ -95,10 +95,10 @@ python model.py
 
 ### Results
 
-| Metric | Score |
-|--------|-------|
-| Accuracy | 57(training) | 52(test)
-| F1 Score | 57(training) | 52(test)
+| Metric | Score1 | Score2 |
+|--------|-------|-------|
+| Accuracy | 57(training) | 52(test) |
+| F1 Score | 57(training) | 52(test) |
 
 **Confusion Matrix:**
 
@@ -128,23 +128,25 @@ python rag_search.py
 You will be prompted to enter a search query. Example:
 
 ```
-Enter your search query: Show me matches where the away team won
+Enter your search query: Show me winner of 2023 ipl
 ```
 
-**Output:** Top 3 most semantically similar match records.
+**Output(using query):** Top 10 most semantically similar match records.
+**Output(using run):** Perform retrival QuestionAnswer using llm.
 
 ### How it works
-1. Each row in `trials/matches.csv` is converted into a natural language sentence — e.g. *"India vs Australia at MCG on 15 Jan 2024. Australia won. Top scorer: David Warner with 87 runs."*
-2. `sentence-transformers` (model: `model_name`) encodes each sentence into a dense vector.
+1. Each row in `trials/matches.csv` is converted into a natural language sentence — e.g. *"RCB vs MI Finals on 2023 MI won top scorer dhoni most runs 200"*
+2. `sentence-transformers` (model: `BAAI/bge-large-en-v1.5`) encodes each sentence into a dense vector.
 3. Vectors are stored in a ChromaDB in-memory collection.
-4. On query, the query string is also embedded and cosine similarity is used to retrieve the top 3 matches.
-
+4. On query, the query string is also embedded and cosine similarity is used to retrieve the top 10 matches.
+5. On run, it will use `meta-llama/Llama-3.2-1B-Instruct` to perform retrival QuestionAnswer
 ---
 
 ## Challenges Faced
 
-- [Website structure changed — had to adjust CSS selectors]
-- [Small dataset and features size limited model accuracy]
+- Website structure changed — had to adjust CSS selectors
+- Small dataset and features size limited model accuracy
+- continous changes in genai documentation and codes
 
 ---
 

@@ -1,10 +1,14 @@
 trials/data
+trials/chroma
 trials/model.pkl
 trials/matches_c_1st.csv
 trials/matches_c_2nd.csv
-trials/match_data2.csv
+trials/corpus_per_match.txt
+trials/corpus_full.txt
 
 datas
+chroma
 
 .vscode
+.conda
 Veloria_Tech_ML_Intern_Assignment.pdf
