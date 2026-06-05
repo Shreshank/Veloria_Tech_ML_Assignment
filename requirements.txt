@@ -2,7 +2,10 @@ pandas
 numpy
 beautifulsoup4
 selenium
+matplotlib
+seaborn
 scikit-learn
+xgboost
 chromadb
 langchain
 sentence-transformers

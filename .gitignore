@@ -1,4 +1,10 @@
 trials/data
+trials/model.pkl
+trials/matches_c_1st.csv
+trials/matches_c_2nd.csv
+trials/match_data2.csv
+
 datas
+
 .vscode
 Veloria_Tech_ML_Intern_Assignment.pdf
